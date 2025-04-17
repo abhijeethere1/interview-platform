@@ -174,8 +174,10 @@
     --color-primary-100: #dddfff;
     --color-primary-200: #cac5fe;
     --color-light-100: #d6e0ff;
+    --color-light-600: #4f557d;
     --color-dark-100: #020408;
     --color-dark-200: #27282f;
+    --color-dark-300: #242633;
     --font-mona-sans: "Mona Sans", sans-serif;
     --color-primary: var(--primary);
     --color-secondary: var(--secondary);
@@ -1024,6 +1026,14 @@
     inset: calc(var(--spacing) * -1);
   }
 
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+  }
+
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
+
   .isolate {
     isolation: isolate;
   }
@@ -1100,16 +1110,41 @@
     }
   }
 
+  .mt-3 {
+    margin-top: calc(var(--spacing) * 3);
+  }
+
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
+  }
+
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
   }
 
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
   }
 
+  .-ml-3 {
+    margin-left: calc(var(--spacing) * -3);
+  }
+
   .ml-1 {
     margin-left: calc(var(--spacing) * 1);
+  }
+
+  .flex-center {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .line-clamp-2 {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
   }
 
   .block {
@@ -1196,6 +1231,11 @@
     display: table-row-group;
   }
 
+  .size-5 {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+  }
+
   .size-9 {
     width: calc(var(--spacing) * 9);
     height: calc(var(--spacing) * 9);
@@ -1204,6 +1244,11 @@
   .size-\[40px\] {
     width: 40px;
     height: 40px;
+  }
+
+  .size-\[90px\] {
+    width: 90px;
+    height: 90px;
   }
 
   .h-8 {
@@ -1222,8 +1267,20 @@
     height: fit-content;
   }
 
+  .min-h-96 {
+    min-height: calc(var(--spacing) * 96);
+  }
+
   .min-h-screen {
     min-height: 100vh;
+  }
+
+  .w-\[360px\] {
+    width: 360px;
+  }
+
+  .w-fit {
+    width: fit-content;
   }
 
   .w-full {
@@ -1468,6 +1525,10 @@
     border-bottom-left-radius: .25rem;
   }
 
+  .rounded-bl-lg {
+    border-bottom-left-radius: var(--radius);
+  }
+
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -1525,8 +1586,16 @@
     background-color: var(--color-dark-200);
   }
 
+  .bg-dark-300 {
+    background-color: var(--color-dark-300);
+  }
+
   .bg-destructive {
     background-color: var(--destructive);
+  }
+
+  .bg-light-600 {
+    background-color: var(--color-light-600);
   }
 
   .bg-primary {
@@ -1580,6 +1649,10 @@
 
   .object-cover {
     object-fit: cover;
+  }
+
+  .p-2 {
+    padding: calc(var(--spacing) * 2);
   }
 
   .p-4 {
