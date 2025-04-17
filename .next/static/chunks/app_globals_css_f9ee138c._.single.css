@@ -71,8 +71,8 @@
       --tw-backdrop-opacity: initial;
       --tw-backdrop-saturate: initial;
       --tw-backdrop-sepia: initial;
-      --tw-ease: initial;
       --tw-duration: initial;
+      --tw-ease: initial;
     }
   }
 }
@@ -1251,6 +1251,11 @@
     height: 90px;
   }
 
+  .size-\[120px\] {
+    width: 120px;
+    height: 120px;
+  }
+
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
@@ -1329,6 +1334,14 @@
 
   .transform {
     transform: var(--tw-rotate-x, ) var(--tw-rotate-y, ) var(--tw-rotate-z, ) var(--tw-skew-x, ) var(--tw-skew-y, );
+  }
+
+  .animate-fadeIn {
+    animation: .3s ease-in-out fadeIn;
+  }
+
+  .animate-ping {
+    animation: var(--animate-ping);
   }
 
   .touch-pinch-zoom {
@@ -1906,6 +1919,18 @@
     -moz-osx-font-smoothing: auto;
   }
 
+  .opacity-0 {
+    opacity: 0;
+  }
+
+  .opacity-75 {
+    opacity: .75;
+  }
+
+  .opacity-100 {
+    opacity: 1;
+  }
+
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, #0000001a), 0 1px 2px -1px var(--tw-shadow-color, #0000001a);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -2008,6 +2033,17 @@
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
 
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+
+  .duration-500 {
+    --tw-duration: .5s;
+    transition-duration: .5s;
+  }
+
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
@@ -2030,6 +2066,10 @@
 
   :where(.divide-x-reverse > :not(:last-child)) {
     --tw-divide-x-reverse: 1;
+  }
+
+  .duration-500 {
+    animation-duration: .5s;
   }
 
   .ease-in-out {
@@ -2816,12 +2856,12 @@
   inherits: false
 }
 
-@property --tw-ease {
+@property --tw-duration {
   syntax: "*";
   inherits: false
 }
 
-@property --tw-duration {
+@property --tw-ease {
   syntax: "*";
   inherits: false
 }
