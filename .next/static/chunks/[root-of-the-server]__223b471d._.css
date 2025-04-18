@@ -1080,6 +1080,10 @@
     top: calc(var(--spacing) * 0);
   }
 
+  .top-10 {
+    top: calc(var(--spacing) * 10);
+  }
+
   .right-0 {
     right: calc(var(--spacing) * 0);
   }
@@ -1090,6 +1094,10 @@
 
   .isolation-auto {
     isolation: auto;
+  }
+
+  .z-10 {
+    z-index: 10;
   }
 
   .\!container {
@@ -1328,6 +1336,18 @@
 
   .min-h-screen {
     min-height: 100vh;
+  }
+
+  .w-10 {
+    width: calc(var(--spacing) * 10);
+  }
+
+  .w-20 {
+    width: calc(var(--spacing) * 20);
+  }
+
+  .w-30 {
+    width: calc(var(--spacing) * 30);
   }
 
   .w-\[360px\] {
