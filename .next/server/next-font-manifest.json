@@ -1,11 +1,5 @@
 {
   "app": {
-    "[project]/app/(auth)/sign-in/page": [
-      "static/media/o_0bIpQmx24alC5A4PNB6Ryti20_6n1iPHjc5a7du3mhPy0-s.p.edb7f854.woff2"
-    ],
-    "[project]/app/(auth)/sign-up/page": [
-      "static/media/o_0bIpQmx24alC5A4PNB6Ryti20_6n1iPHjc5a7du3mhPy0-s.p.edb7f854.woff2"
-    ],
     "[project]/app/(root)/interview/page": [
       "static/media/o_0bIpQmx24alC5A4PNB6Ryti20_6n1iPHjc5a7du3mhPy0-s.p.edb7f854.woff2"
     ],
