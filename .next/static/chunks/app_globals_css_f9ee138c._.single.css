@@ -174,7 +174,9 @@
     --color-primary-100: #dddfff;
     --color-primary-200: #cac5fe;
     --color-light-100: #d6e0ff;
+    --color-light-400: #6870a6;
     --color-light-600: #4f557d;
+    --color-light-800: #24273a;
     --color-dark-100: #020408;
     --color-dark-200: #27282f;
     --color-dark-300: #242633;
@@ -1631,8 +1633,16 @@
     background-color: var(--destructive);
   }
 
+  .bg-light-400 {
+    background-color: var(--color-light-400);
+  }
+
   .bg-light-600 {
     background-color: var(--color-light-600);
+  }
+
+  .bg-light-800 {
+    background-color: var(--color-light-800);
   }
 
   .bg-primary {

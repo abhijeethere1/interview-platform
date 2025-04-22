@@ -1,1 +1,6 @@
-{}
+{
+  "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
+  "/(root)/interview/[id]/feedback/page": "app/(root)/interview/[id]/feedback/page.js",
+  "/(root)/page": "app/(root)/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
+}
