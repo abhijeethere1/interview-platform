@@ -1665,6 +1665,10 @@
     background-color: var(--background);
   }
 
+  .bg-blue-600 {
+    background-color: var(--color-blue-600);
+  }
+
   .bg-dark-200 {
     background-color: var(--color-dark-200);
   }
