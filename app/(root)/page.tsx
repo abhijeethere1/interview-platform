@@ -53,7 +53,7 @@ async function Home() {
               <InterviewCard
                 key={interview.id}
                 userId={user?.id}
-                interviewId={interview.id}
+                id={interview.id}
                 role={interview.role}
                 type={interview.type}
                 techstack={interview.techstack}
@@ -75,7 +75,7 @@ async function Home() {
               <InterviewCard
                 key={interview.id}
                 userId={user?.id}
-                interviewId={interview.id}
+                id={interview.id}
                 role={interview.role}
                 type={interview.type}
                 techstack={interview.techstack}

@@ -134,33 +134,33 @@ const interviewer = {
                 role: "system",
                 content: `You are a professional job interviewer conducting a real-time voice interview with a candidate. Your goal is to assess their qualifications, motivation, and fit for the role.
 
-// Interview Guidelines:
-// Follow the structured question flow:
-// {{questions}}
+Interview Guidelines:
+Follow the structured question flow:
+{{questions}}
 
-// Engage naturally & react appropriately:
-// Listen actively to responses and acknowledge them before moving forward.
-// Ask brief follow-up questions if a response is vague or requires more detail.
-// Keep the conversation flowing smoothly while maintaining control.
-// Be professional, yet warm and welcoming:
+Engage naturally & react appropriately:
+Listen actively to responses and acknowledge them before moving forward.
+Ask brief follow-up questions if a response is vague or requires more detail.
+Keep the conversation flowing smoothly while maintaining control.
+Be professional, yet warm and welcoming:
 
-// Use official yet friendly language.
-// Keep responses concise and to the point (like in a real voice interview).
-// Avoid robotic phrasing—sound natural and conversational.
-// Answer the candidate’s questions professionally:
+Use official yet friendly language.
+Keep responses concise and to the point (like in a real voice interview).
+Avoid robotic phrasing—sound natural and conversational.
+Answer the candidate’s questions professionally:
 
-// If asked about the role, company, or expectations, provide a clear and relevant answer.
-// If unsure, redirect the candidate to HR for more details.
+If asked about the role, company, or expectations, provide a clear and relevant answer.
+If unsure, redirect the candidate to HR for more details.
 
-// Conclude the interview properly:
-// Thank the candidate for their time.
-// Inform them that the company will reach out soon with feedback.
-// End the conversation on a polite and positive note.
+Conclude the interview properly:
+Thank the candidate for their time.
+Inform them that the company will reach out soon with feedback.
+End the conversation on a polite and positive note.
 
 
-// - Be sure to be professional and polite.
-// - Keep all your responses short and simple. Use official language, but be kind and welcoming.
-// - This is a voice conversation, so keep your responses short, like in a real conversation. Don't ramble for too long.`
+- Be sure to be professional and polite.
+- Keep all your responses short and simple. Use official language, but be kind and welcoming.
+- This is a voice conversation, so keep your responses short, like in a real conversation. Don't ramble for too long.`
             }
         ]
     }
@@ -679,7 +679,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 ;
 ;
 ;
-function InterviewCard({ interviewId, userId, role, type, techstack, createdAt }) {
+function InterviewCard({ id, userId, role, type, techstack, createdAt }) {
     const feedback = null;
     const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
     const formattedDate = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$dayjs$2f$dayjs$2e$min$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])(feedback?.createdAt || createdAt || Date.now()).format("DD/MM/YYYY");
@@ -817,7 +817,7 @@ function InterviewCard({ interviewId, userId, role, type, techstack, createdAt }
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Button"], {
                         className: "btn-primary",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                            href: ("TURBOPACK compile-time falsy", 0) ? ("TURBOPACK unreachable", undefined) : `/interview/${interviewId}`,
+                            href: ("TURBOPACK compile-time falsy", 0) ? ("TURBOPACK unreachable", undefined) : `/interview/${id}`,
                             children: ("TURBOPACK compile-time falsy", 0) ? ("TURBOPACK unreachable", undefined) : "View Interview"
                         }, void 0, false, {
                             fileName: "[project]/components/InterviewCard.tsx",
@@ -957,7 +957,7 @@ async function Home() {
                         className: "interviews-section",
                         children: hasPastInterviews ? userInterviews?.map((interview)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$InterviewCard$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                 userId: user?.id,
-                                interviewId: interview.id,
+                                id: interview.id,
                                 role: interview.role,
                                 type: interview.type,
                                 techstack: interview.techstack,
@@ -998,7 +998,7 @@ async function Home() {
                         className: "interviews-section",
                         children: hasUpcomingInterviews ? allInterview?.map((interview)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$InterviewCard$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                                 userId: user?.id,
-                                interviewId: interview.id,
+                                id: interview.id,
                                 role: interview.role,
                                 type: interview.type,
                                 techstack: interview.techstack,

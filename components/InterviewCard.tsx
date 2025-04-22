@@ -7,7 +7,7 @@ import { Button } from './ui/button';
 // import { Linden_Hill } from 'next/font/google';
 import Link from 'next/link';
 
-function InterviewCard({interviewId, userId, role, type, techstack, createdAt}:InterviewCardProps) {
+function InterviewCard({id, userId, role, type, techstack, createdAt}:InterviewCardProps) {
   const feedback = null as Feedback | null
 
   const normalizedType= /mix/gi.test(type) ? "Mixed" : type;
@@ -61,8 +61,8 @@ function InterviewCard({interviewId, userId, role, type, techstack, createdAt}:I
             <Link
               href={
                 feedback
-                  ? `/interview/${interviewId}/feedback`
-                  : `/interview/${interviewId}`
+                  ? `/interview/${id}/feedback`
+                  : `/interview/${id}`
               }
             >
               {feedback ? "Check Feedback" : "View Interview"}
