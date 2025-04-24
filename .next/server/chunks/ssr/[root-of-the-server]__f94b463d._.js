@@ -158,7 +158,7 @@ async function signIn(params) {
         };
         await setSessionCookie(idToken);
     } catch (error) {
-        console.log("error", error);
+        console.log("");
         return {
             success: false,
             message: "Failed to log into account. Please try again."
