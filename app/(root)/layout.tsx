@@ -11,10 +11,13 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="root-layout">
-      <nav>
-        <Link href="/" className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="MockMate Logo" width={38} height={32} />
-          <h2 className="text-primary-100">PrepWise</h2>
+      <nav className="flex items-center justify-center py-4">
+        <Link href="/" className="flex items-center gap-4">
+          {/* Logo */}
+          <Image src="/logo1.svg" alt="robot logo" width={50} height={40} className="transform scale-110" />
+          
+          {/* Text */}
+          <h2 className="text-3xl font-semibold text-white">SmartHireAI</h2>
         </Link>
       </nav>
 
