@@ -49,7 +49,7 @@ export async function signUp(params: SignUpParams) {
       success: true,
       message: "Account created successfully. Please sign in.",
     };
-  } catch (error :any) {
+  } catch (error: any) {
     console.error("Error creating user:", error);
 
     // Handle Firebase specific errors
@@ -80,7 +80,7 @@ export async function signIn(params: SignInParams) {
 
     await setSessionCookie(idToken);
   } catch (error: any) {
-    console.log("error",error);
+    console.log("");
 
     return {
       success: false,
@@ -130,5 +130,3 @@ export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user;
 }
-
-

@@ -9,7 +9,7 @@ import { cn, getRandomInterviewCover } from "@/lib/utils";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
 const InterviewCard = async ({
-  id: interviewId,
+  interviewId,
   userId,
   role,
   type,

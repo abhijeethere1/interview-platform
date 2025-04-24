@@ -2343,6 +2343,12 @@
     }
   }
 
+  @media (width >= 64rem) {
+    .lg\:min-w-\[566px\] {
+      min-width: 566px;
+    }
+  }
+
   .dark\:border-input:is(.dark *) {
     border-color: var(--input);
   }
