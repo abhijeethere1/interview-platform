@@ -3,6 +3,8 @@
 import { auth, db } from "@/firebase/admin";
 import { cookies } from "next/headers";
 
+
+
 // Session duration (1 week)
 const SESSION_DURATION = 60 * 60 * 24 * 7;
 
@@ -129,4 +131,24 @@ export async function getCurrentUser(): Promise<User | null> {
 export async function isAuthenticated() {
   const user = await getCurrentUser();
   return !!user;
+}
+
+export async function logout(){
+  try{
+    const cookieStore = await cookies();
+    cookieStore.delete("session");
+   
+  } catch(err){
+    
+    return{
+      success: false, 
+      message: "Logout failed. Please try again." 
+    }
+
+  }
+  return {
+    success: true,
+    message: "Logged out successfully",
+  };
+
 }

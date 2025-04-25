@@ -77,9 +77,10 @@ __turbopack_async_result__();
 
 var { g: global, __dirname, a: __turbopack_async_module__ } = __turbopack_context__;
 __turbopack_async_module__(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
-/* __next_internal_action_entry_do_not_use__ [{"00793394b277d19552014378f1dc846c09cbfb2b57":"signOut","00a01d09c19859b55ae7ac996eee01b56c67a3c0a2":"isAuthenticated","00d5d013267b10086c3f61e76203aad2abc9e1bfaa":"getCurrentUser","4016cb4fb2494378f5ff0a0e5882c62c19a902d083":"signIn","4085e29fdf6b5b5276675b3979afc28fc980338cfb":"setSessionCookie","40da36582b074e7ac0a194925866a6a4ceb629df82":"signUp"},"",""] */ __turbopack_context__.s({
+/* __next_internal_action_entry_do_not_use__ [{"00793394b277d19552014378f1dc846c09cbfb2b57":"signOut","00a01d09c19859b55ae7ac996eee01b56c67a3c0a2":"isAuthenticated","00b931587180d522de8c7c728e98901163fe528047":"logout","00d5d013267b10086c3f61e76203aad2abc9e1bfaa":"getCurrentUser","4016cb4fb2494378f5ff0a0e5882c62c19a902d083":"signIn","4085e29fdf6b5b5276675b3979afc28fc980338cfb":"setSessionCookie","40da36582b074e7ac0a194925866a6a4ceb629df82":"signUp"},"",""] */ __turbopack_context__.s({
     "getCurrentUser": (()=>getCurrentUser),
     "isAuthenticated": (()=>isAuthenticated),
+    "logout": (()=>logout),
     "setSessionCookie": (()=>setSessionCookie),
     "signIn": (()=>signIn),
     "signOut": (()=>signOut),
@@ -192,6 +193,21 @@ async function isAuthenticated() {
     const user = await getCurrentUser();
     return !!user;
 }
+async function logout() {
+    try {
+        const cookieStore = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$headers$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["cookies"])();
+        cookieStore.delete("session");
+    } catch (err) {
+        return {
+            success: false,
+            message: "Logout failed. Please try again."
+        };
+    }
+    return {
+        success: true,
+        message: "Logged out successfully"
+    };
+}
 ;
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["ensureServerEntryExports"])([
     setSessionCookie,
@@ -199,7 +215,8 @@ async function isAuthenticated() {
     signIn,
     signOut,
     getCurrentUser,
-    isAuthenticated
+    isAuthenticated,
+    logout
 ]);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(setSessionCookie, "4085e29fdf6b5b5276675b3979afc28fc980338cfb", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(signUp, "40da36582b074e7ac0a194925866a6a4ceb629df82", null);
@@ -207,6 +224,7 @@ async function isAuthenticated() {
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(signOut, "00793394b277d19552014378f1dc846c09cbfb2b57", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(getCurrentUser, "00d5d013267b10086c3f61e76203aad2abc9e1bfaa", null);
 (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(isAuthenticated, "00a01d09c19859b55ae7ac996eee01b56c67a3c0a2", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])(logout, "00b931587180d522de8c7c728e98901163fe528047", null);
 __turbopack_async_result__();
 } catch(e) { __turbopack_async_result__(e); } }, false);}),
 "[project]/app/(auth)/layout.tsx [app-rsc] (ecmascript)": ((__turbopack_context__) => {

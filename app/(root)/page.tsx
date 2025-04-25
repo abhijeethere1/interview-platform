@@ -1,14 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
-
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
 } from "@/lib/actions/general.action";
+
+import { SparklesPreview } from "@/components/SparklesPreview";
+import { GoogleGeminiEffectDemo } from "@/components/GoogleGeminiEffectDemo";
 
 async function Home() {
   const user = await getCurrentUser();
@@ -18,78 +19,95 @@ async function Home() {
     getLatestInterviews({ userId: user?.id! }),
   ]);
 
-  const hasPastInterviews = userInterviews?.length! > 0;
-  const hasUpcomingInterviews = allInterview?.length! > 0;
+  const sortedUserInterviews = userInterviews?.sort((a, b) =>
+    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+  const sortedAllInterviews = allInterview?.sort((a, b) =>
+    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  const limitedUserInterviews = sortedUserInterviews?.slice(0, 6);
+  const limitedAllInterviews = sortedAllInterviews?.slice(0, 6);
+
+  const hasPastInterviews = limitedUserInterviews?.length! > 0;
+  const hasUpcomingInterviews = limitedAllInterviews?.length! > 0;
 
   return (
     <>
-      <section className="flex flex-col md:flex-row items-center justify-between gap-12 py-16 px-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg dark:bg-gradient-to-r dark:from-blue-900 dark:to-indigo-900 dark:text-gray-100">
-        <div className="flex flex-col gap-6 max-w-lg text-center md:text-left">
-          <h2 className="text-3xl font-bold">
-            Get Interview-Ready with AI-Powered Practice & Feedback
-          </h2>
-          <p className="text-lg">
-            Practice real interview questions & get instant feedback to sharpen your skills.
-          </p>
+    <div className="w-full flex items-center justify-center px-6 py-4 shadow-sm">
+      <Link href="/" className="flex items-center gap-2">
+        <SparklesPreview />
+      </Link>
+    </div>
 
-          <Button asChild className="btn-primary max-sm:w-full mt-4">
-            <Link href="/interview">Start an Interview</Link>
-          </Button>
-        </div>
 
-        <Image
-          src="/robot.png"
-          alt="robo-dude"
-          width={400}
-          height={400}
-          className="hidden md:block rounded-lg shadow-lg"
-        />
-      </section>
+    <main className="px-4 md:px-12 py-10 max-w-screen-xl mx-auto space-y-20">
 
-      <section className="mt-12 px-8">
-        <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">Your Interviews</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {hasPastInterviews ? (
-            userInterviews?.map((interview) => (
+      <section>
+        <GoogleGeminiEffectDemo/>
+      </section> 
+
+      {/* Your Interviews */}
+      <section className="mt-10">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+          Your Interviews
+        </h2>
+        {hasPastInterviews ? (
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {limitedUserInterviews?.map((interview) => (
               <InterviewCard
-                key={interview.id}
-                userId={user?.id}
-                interviewId={interview.id}
-                role={interview.role}
-                type={interview.type}
-                techstack={interview.techstack}
-                createdAt={interview.createdAt}
+              key={interview.id}
+              userId={user?.id}
+              interviewId={interview.id}
+              role={interview.role}
+              type={interview.type}
+              techstack={interview.techstack}
+              createdAt={interview.createdAt}
               />
-            ))
-          ) : (
-            <div className="text-center text-gray-600 dark:text-gray-400">You haven't taken any interviews yet.</div>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-gray-500 dark:text-gray-400 mt-8">
+            You haven't taken any interviews yet.
+          </div>
+        )}
       </section>
 
-      <section className="mt-12 px-8">
-        <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">Take Interviews</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {hasUpcomingInterviews ? (
-            allInterview?.map((interview) => (
+      {/* Upcoming Interviews */}
+      <section>
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">
+          Take Interviews
+        </h2>
+        {hasUpcomingInterviews ? (
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {limitedAllInterviews?.map((interview) => (
               <InterviewCard
-                key={interview.id}
-                userId={user?.id}
-                interviewId={interview.id}
-                role={interview.role}
-                type={interview.type}
-                techstack={interview.techstack}
-                createdAt={interview.createdAt}
+              key={interview.id}
+              userId={user?.id}
+              interviewId={interview.id}
+              role={interview.role}
+              type={interview.type}
+              techstack={interview.techstack}
+              createdAt={interview.createdAt}
               />
-            ))
-          ) : (
-            <div className="text-center text-gray-600 dark:text-gray-400">There are no interviews available at the moment.</div>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center text-gray-500 dark:text-gray-400 mt-8">
+            There are no interviews available at the moment.
+          </div>
+        )}
       </section>
-    </>
+
+      {/* View All Interviews Button */}
+      <div className="flex justify-center">
+        <Button asChild className="bg-blue-800 hover:bg-blue-500 text-white px-6 py-3 text-lg rounded-xl shadow-md">
+          <Link href="/allinterviews">View All Interviews</Link>
+        </Button>
+      </div>
+    </main>
+        </>
   );
 }
 

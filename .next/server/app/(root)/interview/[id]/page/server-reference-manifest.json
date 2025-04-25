@@ -22,6 +22,17 @@
         "app/(root)/interview/[id]/page": "rsc"
       }
     },
+    "00b931587180d522de8c7c728e98901163fe528047": {
+      "workers": {
+        "app/(root)/interview/[id]/page": {
+          "moduleId": "[project]/.next-internal/server/app/(root)/interview/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/lib/actions/general.action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(root)/interview/[id]/page": "rsc"
+      }
+    },
     "00d5d013267b10086c3f61e76203aad2abc9e1bfaa": {
       "workers": {
         "app/(root)/interview/[id]/page": {

@@ -1,3 +1,6 @@
+// components/InterviewCard.tsx
+
+
 import dayjs from "dayjs";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,72 +29,71 @@ const InterviewCard = async ({
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
 
-  const badgeColor =
-    {
-      Behavioral: "bg-light-400",
-      Mixed: "bg-light-600",
-      Technical: "bg-light-800",
-    }[normalizedType] || "bg-light-600";
+  const badgeColor = {
+    Behavioral: "bg-green-700 text-green-200",
+    Mixed: "bg-yellow-700 text-yellow-200",
+    Technical: "bg-blue-700 text-blue-200",
+  }[normalizedType] || "bg-gray-700 text-gray-200";
 
   const formattedDate = dayjs(
     feedback?.createdAt || createdAt || Date.now()
   ).format("MMM D, YYYY");
 
   return (
-    <div className="card-border w-[360px] max-sm:w-full min-h-96">
-      <div className="card-interview">
-        <div>
-          {/* Type Badge */}
-          <div
-            className={cn(
-              "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
-              badgeColor
-            )}
-          >
-            <p className="badge-text ">{normalizedType}</p>
-          </div>
+    <div className="w-[360px] max-sm:w-full min-h-96 rounded-3xl bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#111] shadow-2xl border border-gray-700 hover:scale-[1.025] transition-all duration-300 relative overflow-hidden group">
+      
+      {/* Accent glow on hover */}
+      <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition duration-300 blur-2xl bg-gradient-to-br from-indigo-500/30 via-blue-400/20 to-transparent" />
 
-          {/* Cover Image */}
+      <div className="p-6 flex flex-col justify-between h-full gap-6 relative z-10">
+
+        <div
+          className={cn(
+            "absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold shadow-md",
+            badgeColor
+          )}
+        >
+          {normalizedType}
+        </div>
+
+        {/* Cover Image */}
+        <div className="flex justify-center">
           <Image
             src={getRandomInterviewCover()}
             alt="cover-image"
-            width={90}
-            height={90}
-            className="rounded-full object-fit size-[90px]"
+            width={80}
+            height={80}
+            className="rounded-full object-cover border-4 border-gray-800 shadow-lg"
           />
-
-          {/* Interview Role */}
-          <h3 className="mt-5 capitalize">{role} Interview</h3>
-
-          {/* Date & Score */}
-          <div className="flex flex-row gap-5 mt-3">
-            <div className="flex flex-row gap-2">
-              <Image
-                src="/calendar.svg"
-                width={22}
-                height={22}
-                alt="calendar"
-              />
-              <p>{formattedDate}</p>
-            </div>
-
-            <div className="flex flex-row gap-2 items-center">
-              <Image src="/star.svg" width={22} height={22} alt="star" />
-              <p>{feedback?.totalScore || "---"}/100</p>
-            </div>
-          </div>
-
-          {/* Feedback or Placeholder Text */}
-          <p className="line-clamp-2 mt-5">
-            {feedback?.finalAssessment ||
-              "You haven't taken this interview yet. Take it now to improve your skills."}
-          </p>
         </div>
 
-        <div className="flex flex-row justify-between">
-          <DisplayTechIcons techStack={techstack} />
+        {/* Role Title */}
+        <h3 className="text-center mt-2 text-xl font-semibold capitalize text-white">
+          {role} Interview
+        </h3>
 
-          <Button className="btn-primary">
+        {/* Date & Score */}
+        <div className="flex flex-row justify-center gap-8 text-sm text-gray-400">
+          <div className="flex items-center gap-1">
+            <Image src="/calendar.svg" width={20} height={20} alt="calendar" />
+            <span>{formattedDate}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Image src="/star.svg" width={20} height={20} alt="star" />
+            <span>{feedback?.totalScore || "---"}/100</span>
+          </div>
+        </div>
+
+        {/* Assessment Summary */}
+        <p className="text-center text-gray-400 text-sm italic">
+          {feedback?.finalAssessment ||
+            "You haven't taken this interview yet. Take it now to improve your skills."}
+        </p>
+
+        {/* Tech + Button */}
+        <div className="flex justify-between items-center mt-4">
+          <DisplayTechIcons techStack={techstack} />
+          <Button className="bg-blue-600 text-white hover:bg-blue-500 px-4 py-2 text-sm rounded-xl shadow-md">
             <Link
               href={
                 feedback

@@ -22,6 +22,17 @@
         "app/(auth)/sign-in/page": "rsc"
       }
     },
+    "00b931587180d522de8c7c728e98901163fe528047": {
+      "workers": {
+        "app/(auth)/sign-in/page": {
+          "moduleId": "[project]/.next-internal/server/app/(auth)/sign-in/page/actions.js { ACTIONS_MODULE0 => \"[project]/lib/actions/auth.action.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": true
+        }
+      },
+      "layer": {
+        "app/(auth)/sign-in/page": "rsc"
+      }
+    },
     "00d5d013267b10086c3f61e76203aad2abc9e1bfaa": {
       "workers": {
         "app/(auth)/sign-in/page": {
