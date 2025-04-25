@@ -11,9 +11,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   if (!isUserAuthenticated) redirect("/sign-in");
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between scrollbar-hide">
+    <div className="min-h-screen flex flex-col items-center justify-between relative">
       {/* Navbar */}
-      <nav className="w-3/4 flex items-center justify-between px-6 py-4 m-5 rounded-2xl bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-md">
+      <nav className="w-full max-w-screen-xl flex items-center justify-between px-6 py-4 m-5 rounded-2xl bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-md z-50">
         {/* Left: Logo */}
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-gray-800 dark:text-white">
@@ -44,7 +44,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       </nav>
 
       {/* Main content */}
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 md:px-8 z-10">{children}</main>
     </div>
   );
 };
