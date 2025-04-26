@@ -4,6 +4,7 @@ import { Mona_Sans } from "next/font/google";
 
 import "./globals.css";
 
+
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
   subsets: ["latin"],
@@ -21,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      </head>
       <body className={`${monaSans.className} antialiased pattern`}>
         {children}
 

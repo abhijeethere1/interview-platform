@@ -1292,6 +1292,10 @@
     margin-block: calc(var(--spacing) * 6);
   }
 
+  .-mt-20 {
+    margin-top: calc(var(--spacing) * -20);
+  }
+
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
@@ -1968,10 +1972,22 @@
     margin-block-end: calc(calc(var(--spacing) * 9) * calc(1 - var(--tw-space-y-reverse)));
   }
 
+  :where(.space-y-10 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
+  }
+
   :where(.space-y-20 > :not(:last-child)) {
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 20) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 20) * calc(1 - var(--tw-space-y-reverse)));
+  }
+
+  :where(.space-y-210 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 210) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 210) * calc(1 - var(--tw-space-y-reverse)));
   }
 
   :where(.space-y-reverse > :not(:last-child)) {
@@ -2021,6 +2037,10 @@
 
   .overflow-hidden {
     overflow: hidden;
+  }
+
+  .overflow-visible {
+    overflow: visible;
   }
 
   .overflow-x-hidden {
@@ -2713,6 +2733,10 @@
 
   .py-24 {
     padding-block: calc(var(--spacing) * 24);
+  }
+
+  .pt-0 {
+    padding-top: calc(var(--spacing) * 0);
   }
 
   .pt-4 {

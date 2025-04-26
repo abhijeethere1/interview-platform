@@ -42,10 +42,10 @@ async function Home() {
 
 
     <main className="px-4 md:px-12 py-10 max-w-screen-xl mx-auto space-y-20">
-
-
-      <section>
-        <GoogleGeminiEffectDemo/>
+      <section >
+        <div >
+          <GoogleGeminiEffectDemo/>
+        </div>
       </section> 
 
       {/* Your Interviews */}
