@@ -30,7 +30,7 @@
         }
       },
       "layer": {
-        "app/(root)/page": "rsc"
+        "app/(root)/page": "action-browser"
       }
     },
     "00d5d013267b10086c3f61e76203aad2abc9e1bfaa": {

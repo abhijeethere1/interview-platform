@@ -15,7 +15,7 @@ __turbopack_async_module__(async (__turbopack_handle_async_dependencies__, __tur
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/webpack/loaders/next-flight-loader/server-reference.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$app$2d$render$2f$encryption$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/app-render/encryption.js [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/ai/dist/index.mjs [app-rsc] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$ai$2d$sdk$2f$google$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@ai-sdk/google/dist/index.mjs [app-rsc] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$ai$2d$sdk$2f$groq$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@ai-sdk/groq/dist/index.mjs [app-rsc] (ecmascript)"); // ✅ use groq, not openai
 var __TURBOPACK__imported__module__$5b$project$5d2f$firebase$2f$admin$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/firebase/admin.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$constants$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/constants/index.ts [app-rsc] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$action$2d$validate$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/build/webpack/loaders/next-flight-loader/action-validate.js [app-rsc] (ecmascript)");
@@ -33,24 +33,30 @@ async function createFeedback(params) {
     const { interviewId, userId, transcript, feedbackId } = params;
     try {
         const formattedTranscript = transcript.map((sentence)=>`- ${sentence.role}: ${sentence.content}\n`).join("");
-        const { object } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["generateObject"])({
-            model: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$ai$2d$sdk$2f$google$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["google"])("gemini-2.0-flash-001", {
-                structuredOutputs: false
-            }),
-            schema: __TURBOPACK__imported__module__$5b$project$5d2f$constants$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["feedbackSchema"],
-            prompt: `
-        You are an AI interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories. Be thorough and detailed in your analysis. Don't be lenient with the candidate. If there are mistakes or areas for improvement, point them out.
-        Transcript:
-        ${formattedTranscript}
+        // Universal system prompt that is no longer role-specific
+        const systemPrompt = `
+      You are an AI evaluator conducting a thorough analysis of a mock interview performance.
+      This evaluation is for a job interview, but the role is unspecified.
+      Please ensure that your analysis is detailed, constructive, and based on the following structured categories:
+      
+      Transcript:
+      ${formattedTranscript}
 
-        Please score the candidate from 0 to 100 in the following areas. Do not add categories other than the ones provided:
-        - **Communication Skills**: Clarity, articulation, structured responses.
-        - **Technical Knowledge**: Understanding of key concepts for the role.
-        - **Problem-Solving**: Ability to analyze problems and propose solutions.
-        - **Cultural & Role Fit**: Alignment with company values and job role.
-        - **Confidence & Clarity**: Confidence in responses, engagement, and clarity.
-        `,
-            system: "You are a professional interviewer analyzing a mock interview. Your task is to evaluate the candidate based on structured categories"
+      Evaluation Categories:
+      - **Communication Skills**: Evaluate the clarity of the candidate’s speech, articulation, structure of their responses, and overall communicative ability.
+      - **Technical Knowledge**: Assess the depth of their knowledge in relevant concepts and tools. For technical roles, focus on their problem-solving ability and familiarity with key technical terms.
+      - **Problem-Solving**: Rate their approach to solving problems, including critical thinking, creativity, and efficiency in resolving challenges.
+      - **Cultural & Role Fit**: How well does the candidate fit within the company’s values, work culture, and the requirements of the role? Look for alignment with the company’s expectations and goals.
+      - **Confidence & Clarity**: Assess the candidate’s confidence when responding to questions. Were they composed, clear, and direct?
+
+      If you notice any mistakes, weak areas, or areas for improvement, be specific and provide actionable feedback. Do not be lenient with the candidate; instead, offer valuable suggestions that will help them improve.
+      Remember: Be balanced in your assessment, giving due credit to the candidate's strengths while offering guidance on areas they could work on. 
+    `;
+        const { object } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$ai$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__$3c$locals$3e$__["generateObject"])({
+            model: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$ai$2d$sdk$2f$groq$2f$dist$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["groq"])("llama3-70b-8192"),
+            schema: __TURBOPACK__imported__module__$5b$project$5d2f$constants$2f$index$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["feedbackSchema"],
+            prompt: systemPrompt,
+            system: "You are an experienced and impartial interviewer evaluating a mock interview performance. Your goal is to provide a thorough, actionable analysis."
         });
         const feedback = {
             interviewId: interviewId,

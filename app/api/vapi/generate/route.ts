@@ -1,5 +1,5 @@
 import { generateText } from "ai";
-import { google } from "@ai-sdk/google";
+import { groq } from "@ai-sdk/groq"; 
 
 import { db } from "@/firebase/admin";
 import { getRandomInterviewCover } from "@/lib/utils";
@@ -8,9 +8,10 @@ export async function POST(request: Request) {
   const { type, role, level, techstack, amount, userid } = await request.json();
 
   try {
-    const { text: questions } = await generateText({
-      model: google("gemini-2.0-flash-001"),
-      prompt: `Prepare questions for a job interview.
+    const { text: questionsText } = await generateText({
+      model: groq("llama3-70b-8192"), 
+      prompt: `
+        Prepare questions for a job interview.
         The job role is ${role}.
         The job experience level is ${level}.
         The tech stack used in the job is: ${techstack}.
@@ -22,27 +23,37 @@ export async function POST(request: Request) {
         ["Question 1", "Question 2", "Question 3"]
         
         Thank you! <3
-    `,
+      `,
+      system: "You are a professional interviewer preparing job interview questions.", 
     });
 
+    let questions: string[] = [];
+    try {
+      questions = JSON.parse(questionsText);
+      if (!Array.isArray(questions)) throw new Error("Questions is not an array.");
+    } catch (error) {
+      console.error("Failed to parse questions JSON:", error);
+      return Response.json({ success: false, error: "Invalid questions format" }, { status: 400 });
+    }
+
     const interview = {
-      role: role,
-      type: type,
-      level: level,
-      techstack: techstack.split(","),
-      questions: JSON.parse(questions),
+      role,
+      type,
+      level,
+      techstack: techstack.split(",").map((tech) => tech.trim()),
+      questions,
       userId: userid,
       finalized: true,
       coverImage: getRandomInterviewCover(),
       createdAt: new Date().toISOString(),
     };
 
-    await db.collection("interviews").add(interview);
+    const interviewRef = await db.collection("interviews").add(interview);
 
-    return Response.json({ success: true }, { status: 200 });
+    return Response.json({ success: true, id: interviewRef.id }, { status: 200 });
   } catch (error) {
-    console.error("Error:", error);
-    return Response.json({ success: false, error: error }, { status: 500 });
+    console.error("Error generating interview:", error);
+    return Response.json({ success: false, error: error instanceof Error ? error.message : "Unknown error" }, { status: 500 });
   }
 }
 

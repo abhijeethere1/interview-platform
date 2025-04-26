@@ -1,5 +1,17 @@
 {
   "app": {
+    "[project]/app/(auth)/sign-in/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
+    "[project]/app/(auth)/sign-up/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
+    "[project]/app/(root)/allinterviews/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
+    "[project]/app/(root)/interview/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
     "[project]/app/(root)/page": [
       "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
     ],

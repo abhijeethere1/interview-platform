@@ -4,11 +4,24 @@ import { cn } from "@/lib/utils";
 import { motion, MotionValue } from "framer-motion";
 import React from "react";
 import Link from "next/link";
+import { set } from "zod";
+import { Spin } from "@tsparticles/engine";
+import { useRouter } from "next/navigation";
+
+
+
 
 const transition = {
   duration: 0,
   ease: "linear",
 };
+const Spinner = () => {
+  return (
+    <div className="w-5 h-5 border-l-2 border-r-2 border-t-2 border-black dark:border-black border-t-transparent rounded-full animate-spin" />
+  );
+};
+
+
 
 export const GoogleGeminiEffect = ({
   pathLengths,
@@ -21,6 +34,14 @@ export const GoogleGeminiEffect = ({
   description?: string;
   className?: string;
 }) => {
+  const router = useRouter();
+  const [loader,setLoader] = React.useState(false);
+  const loading = () => {
+    setLoader(true);
+    router.push("/interview"); // <--- navigate after loading
+  };
+
+
   return (
     <div className={cn("sticky top-20", className)}>
       <p className="text-lg md:text-7xl font-normal pb-4 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-100 to-neutral-300">
@@ -31,11 +52,12 @@ export const GoogleGeminiEffect = ({
           "Dive into real interview simulations and get instant feedback on your communication, problem-solving, and tech stack proficiency"}
       </p>
 
-      <div className="mt-40 w-full h-[890px] -top-60 md:-top-40 flex items-center justify-center bg-transparent absolute">
-      <button className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1 md:mt-24 mt-8 z-30 md:text-base text-black text-xs w-fit mx-auto">
-        <Link href="/interview">
-            Make an Interview
-        </Link>
+      <div className="mt-40 w-full h-[890px] -top-60 md:-top-38 flex items-center justify-center bg-transparent absolute">
+       <button
+          onClick={loading}
+          className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1 md:mt-24 mt-8 z-30 md:text-base text-black text-xs w-fit mx-auto"
+        >
+          {loader ? <Spinner /> : "Make a Interview"}
         </button>
       </div>
 

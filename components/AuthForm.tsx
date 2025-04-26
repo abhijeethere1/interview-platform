@@ -8,6 +8,7 @@ import { auth } from "@/firebase/client";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 
 import {
   createUserWithEmailAndPassword,
@@ -20,6 +21,15 @@ import { signIn, signUp } from "@/lib/actions/auth.action";
 import FormField from "./FormField";
 
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+
+// import { isAuthenticated } from "@/lib/actions/auth.action";
+
+// Spinner Component for Loading
+const Spinner = () => {
+  return (
+    <div className="w-5 h-5 border-l-2 border-r-2 border-t-2 border-black dark:border-white border-t-transparent rounded-full animate-spin" />
+  );
+};
 
 const authFormSchema = (type: FormType) => {
   return z.object({
@@ -42,7 +52,11 @@ const AuthForm = ({ type }: { type: FormType }) => {
     },
   });
 
+  const [loading, setLoading] = React.useState(false);
+
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setLoading(true);
+
     try {
       if (type === "sign-up") {
         const { name, email, password } = data;
@@ -62,6 +76,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
         if (!result.success) {
           toast.error(result.message);
+          setLoading(false);
           return;
         }
 
@@ -79,6 +94,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         const idToken = await userCredential.user.getIdToken();
         if (!idToken) {
           toast.error("Sign in Failed. Please try again.");
+          setLoading(false);
           return;
         }
 
@@ -93,6 +109,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
     } catch (error) {
       console.log(error);
       toast.error(`There was an error: ${error}`);
+      setLoading(false);
     }
   };
 
@@ -100,93 +117,92 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
   return (
     <div className="flex justify-center items-center min-h-screen p-4 ">
-  <CardContainer className="inter-var">
-    <CardBody className="bg-white dark:bg-black border border-black/[0.1] dark:border-white/[0.2] sm:w-[36rem] rounded-2xl p-10 shadow-2xl min-h-[600px] flex flex-col justify-center items-center space-y-6">
+      <CardContainer className="inter-var">
+        <CardBody className="bg-white dark:bg-black border border-black/[0.1] dark:border-white/[0.2] sm:w-[36rem] rounded-2xl p-10 shadow-2xl min-h-[600px] flex flex-col justify-center items-center space-y-6">
 
-      {/* Header Section */}
-      <div className="flex flex-col items-center space-y-3">
-        <CardItem
-          translateZ="50"
-          className="text-5xl font-extrabold text-primary-500 dark:text-white text-center"
-        >
-          <h1>Welcome!</h1>
-        </CardItem>
-        <CardItem
-          translateZ="30"
-          className="text-2xl text-neutral-600 dark:text-neutral-300 text-center font-medium"
-        >
-          Interview Platform
-        </CardItem>
-      </div>
-
-      {/* Form Section */}
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full space-y-9"
-        >
-          {!isSignIn && (
-            <FormField
-              control={form.control}
-              name="name"
-              label="Name"
-              placeholder="Your Name"
-              type="text"
-              
-            />
-          )}
-
-          <FormField
-            control={form.control}
-            name="email"
-            label="Email"
-            placeholder="Your email address"
-            type="email"
-          />
-
-          <FormField
-            control={form.control}
-            name="password"
-            label="Password"
-            placeholder="Enter your password"
-            type="password"
-          />
-<div className="flex flex-col items-center space-y-3">  
-  
-          {/* Submit Button */}
-          <CardItem translateZ={20} as="div">
-            <Button
-              type="submit"
-              className="text-black"
+          {/* Header Section */}
+          <div className="flex flex-col items-center space-y-3">
+            <CardItem
+              translateZ="50"
+              className="text-5xl font-extrabold text-primary-500 dark:text-white text-center"
             >
-              {isSignIn ? "Sign In" : "Create an Account"}
-            </Button>
-          </CardItem>
-</div>
-        </form>
-      </Form>
+              <h1>Welcome!</h1>
+            </CardItem>
+            <CardItem
+              translateZ="30"
+              className="text-2xl text-neutral-600 dark:text-neutral-300 text-center font-medium"
+            >
+              Interview Platform
+            </CardItem>
+          </div>
 
-      {/* Footer */}
-      <div className="flex flex-col items-center space-y-3">  
-      <CardItem
-        translateZ={10}
-        as="p"
-        className="text-sm text-center text-neutral-600 dark:text-neutral-400"
-      >
-        {isSignIn ? "No account yet?" : "Have an account already?"}
-        <Link
-          href={!isSignIn ? "/sign-in" : "/sign-up"}
-          className="ml-2 font-medium text-primary-600 dark:text-primary-300 hover:underline text-center"
-        >
-          {!isSignIn ? "Sign In" : "Sign Up"}
-        </Link>
-      </CardItem>
-      </div>
-    </CardBody>
-  </CardContainer>
-</div>
+          {/* Form Section */}
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="w-full space-y-9"
+            >
+              {!isSignIn && (
+                <FormField
+                  control={form.control}
+                  name="name"
+                  label="Name"
+                  placeholder="Your Name"
+                  type="text"
+                />
+              )}
 
+              <FormField
+                control={form.control}
+                name="email"
+                label="Email"
+                placeholder="Your email address"
+                type="email"
+              />
 
+              <FormField
+                control={form.control}
+                name="password"
+                label="Password"
+                placeholder="Enter your password"
+                type="password"
+               
+              />
+
+              <div className="flex flex-col items-center space-y-3">
+                {/* Submit Button */}
+                <CardItem translateZ={20} as="div">
+                  <Button
+                    type="submit"
+                    className="text-black flex justify-center items-center"
+                    disabled={loading}
+                  >
+                    {loading ? <Spinner /> : isSignIn ? "Sign In" : "Create an Account"}
+                  </Button>
+                </CardItem>
+              </div>
+            </form>
+          </Form>
+
+          {/* Footer */}
+          <div className="flex flex-col items-center space-y-3">
+            <CardItem
+              translateZ={10}
+              as="p"
+              className="text-sm text-center text-neutral-600 dark:text-neutral-400"
+            >
+              {isSignIn ? "No account yet?" : "Have an account already?"}
+              <Link
+                href={!isSignIn ? "/sign-in" : "/sign-up"}
+                className="ml-2 font-medium text-primary-600 dark:text-primary-300 hover:underline text-center"
+              >
+                {!isSignIn ? "Sign In" : "Sign Up"}
+              </Link>
+            </CardItem>
+          </div>
+        </CardBody>
+      </CardContainer>
+    </div>
   );
 };
 

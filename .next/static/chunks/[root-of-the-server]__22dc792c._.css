@@ -275,6 +275,7 @@
     --ease-in: cubic-bezier(.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, .2, 1);
     --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+    --animate-spin: spin 1s linear infinite;
     --animate-ping: ping 1s cubic-bezier(0, 0, .2, 1) infinite;
     --blur-sm: 8px;
     --blur-md: 12px;
@@ -1281,6 +1282,10 @@
     z-index: 50;
   }
 
+  .z-1000 {
+    z-index: 1000;
+  }
+
   .z-\[100\] {
     z-index: 100;
   }
@@ -1415,6 +1420,10 @@
 
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
+  }
+
+  .mt-9 {
+    margin-top: calc(var(--spacing) * 9);
   }
 
   .mt-10 {
@@ -1647,6 +1656,10 @@
     height: calc(var(--spacing) * 4);
   }
 
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
@@ -1697,6 +1710,10 @@
 
   .h-\[45rem\] {
     height: 45rem;
+  }
+
+  .h-\[120px\] {
+    height: 120px;
   }
 
   .h-\[400vh\] {
@@ -1759,6 +1776,10 @@
     width: calc(var(--spacing) * 4);
   }
 
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
@@ -1789,6 +1810,10 @@
 
   .w-\[40rem\] {
     width: 40rem;
+  }
+
+  .w-\[120px\] {
+    width: 120px;
   }
 
   .w-\[360px\] {
@@ -1920,6 +1945,10 @@
 
   .animate-ping {
     animation: var(--animate-ping);
+  }
+
+  .animate-spin {
+    animation: var(--animate-spin);
   }
 
   .cursor-pointer {
@@ -2296,9 +2325,19 @@
     border-top-width: 1px;
   }
 
+  .border-t-2 {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 2px;
+  }
+
   .border-r {
     border-right-style: var(--tw-border-style);
     border-right-width: 1px;
+  }
+
+  .border-r-2 {
+    border-right-style: var(--tw-border-style);
+    border-right-width: 2px;
   }
 
   .border-b {
@@ -2309,6 +2348,11 @@
   .border-l {
     border-left-style: var(--tw-border-style);
     border-left-width: 1px;
+  }
+
+  .border-l-2 {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 2px;
   }
 
   .border-black {
@@ -2379,6 +2423,10 @@
     }
   }
 
+  .border-t-transparent {
+    border-top-color: #0000;
+  }
+
   .bg-\[\#0a0a0a\] {
     background-color: #0a0a0a;
   }
@@ -2407,6 +2455,10 @@
 
   .bg-blue-100 {
     background-color: var(--color-blue-100);
+  }
+
+  .bg-blue-500 {
+    background-color: var(--color-blue-500);
   }
 
   .bg-blue-600 {
@@ -3690,6 +3742,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-blue-600:hover {
+      background-color: var(--color-blue-600);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-destructive\/90:hover {
       background-color: var(--destructive);
     }
@@ -4051,8 +4109,38 @@
   }
 
   @media (width >= 48rem) {
+    .md\:-top-30 {
+      top: calc(var(--spacing) * -30);
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:-top-35 {
+      top: calc(var(--spacing) * -35);
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:-top-38 {
+      top: calc(var(--spacing) * -38);
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:-top-39 {
+      top: calc(var(--spacing) * -39);
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:-top-40 {
       top: calc(var(--spacing) * -40);
+    }
+  }
+
+  @media (width >= 48rem) {
+    .md\:-top-45 {
+      top: calc(var(--spacing) * -45);
     }
   }
 
@@ -4183,6 +4271,12 @@
   }
 
   @media (width >= 48rem) {
+    .md\:py-4 {
+      padding-block: calc(var(--spacing) * 4);
+    }
+  }
+
+  @media (width >= 48rem) {
     .md\:text-left {
       text-align: left;
     }
@@ -4275,12 +4369,20 @@
     }
   }
 
+  .dark\:border-black:is(.dark *) {
+    border-color: var(--color-black);
+  }
+
   .dark\:border-gray-700:is(.dark *) {
     border-color: var(--color-gray-700);
   }
 
   .dark\:border-input:is(.dark *) {
     border-color: var(--input);
+  }
+
+  .dark\:border-white:is(.dark *) {
+    border-color: var(--color-white);
   }
 
   .dark\:border-white\/\[0\.2\]:is(.dark *) {
@@ -5015,6 +5117,12 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 @property --tw-ease {
   syntax: "*";
   inherits: false
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes ping {

@@ -2,13 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { isAuthenticated } from "@/lib/actions/auth.action";
-import { logout } from "@/lib/actions/auth.action";
+import LogoutButton from "@/components/LogoutButton"; // << import this
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();
-  if (!isUserAuthenticated) redirect("/sign-in");
+  if (!isUserAuthenticated) redirect("/sign-up");
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-between relative">
@@ -37,9 +36,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
         {/* Right: Logout */}
         <div className="flex items-center gap-4">
-          <Button onClick={logout} variant="outline" className="text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer">
-            Logout
-          </Button>
+          <LogoutButton /> {/* use client logout button */}
         </div>
       </nav>
 
