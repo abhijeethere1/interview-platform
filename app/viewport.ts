@@ -1,7 +1,8 @@
-export const viewport: Viewport = {
+// app/viewport.ts
+export const viewport = {
     width: "device-width",
-    initialScale: 0.75,  // This is a decimal value
-    maximumScale: 1.25,  // This is also a decimal value
-    minimumScale: 0.5,   // Another decimal value
+    initialScale: 1,
+    maximumScale: 1,
+    minimumScale: 1,
   };
   
