@@ -1,0 +1,29 @@
+/* [next]/internal/font/google/orbitron_882e3d01.module.css [app-client] (css) */
+@font-face {
+  font-family: Orbitron;
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("../media/yMJRMIlzdpvBhQQL_Qq7dy1biN15-s.p.c51c6e03.woff2") format("woff2");
+  unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: Orbitron Fallback;
+  src: local(Arial);
+  ascent-override: 81.5%;
+  descent-override: 19.59%;
+  line-gap-override: 0.0%;
+  size-adjust: 124.05%;
+}
+
+.orbitron_882e3d01-module__ilpLCW__className {
+  font-family: Orbitron, Orbitron Fallback;
+  font-style: normal;
+}
+
+.orbitron_882e3d01-module__ilpLCW__variable {
+  --font-orbitron: "Orbitron", "Orbitron Fallback";
+}
+
+/*# sourceMappingURL=%5Bnext%5D_internal_font_google_orbitron_882e3d01_module_css_f9ee138c._.single.css.map*/
