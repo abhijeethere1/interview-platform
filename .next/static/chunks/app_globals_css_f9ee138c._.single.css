@@ -1132,6 +1132,18 @@
     top: calc(var(--spacing) * 6);
   }
 
+  .top-20 {
+    top: calc(var(--spacing) * 20);
+  }
+
+  .top-30 {
+    top: calc(var(--spacing) * 30);
+  }
+
+  .top-50 {
+    top: calc(var(--spacing) * 50);
+  }
+
   .top-80 {
     top: calc(var(--spacing) * 80);
   }
