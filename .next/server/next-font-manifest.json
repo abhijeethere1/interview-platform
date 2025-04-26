@@ -2,6 +2,9 @@
   "app": {
     "[project]/app/(root)/page": [
       "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
+    "[project]/app/_not-found/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
     ]
   },
   "appUsingSizeAdjust": true,

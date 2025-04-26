@@ -10,9 +10,12 @@ const exo2 = Exo_2({
   subsets: ["latin"],
 });
 
-// Update metadata
+// Update metadatag
 export const metadata: Metadata = {
   title: "SmartHire-AI",
+  icons: {
+    icon: '/logo1.svg', // ← Favicon set here
+  },
   description: "An AI-powered platform for preparing for mock interviews",
 };
 

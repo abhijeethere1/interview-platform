@@ -21,7 +21,7 @@ const Page = async () => {
       </h3>
 
       {/* Agent Component */}
-      <div className="rounded-xl shadow-lg p-6 text-center">
+      <div className="rounded-xl shadow-lg p-6 text-center ">
         <Agent
             userName={user?.name!}
             userId={user?.id}

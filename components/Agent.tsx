@@ -21,7 +21,7 @@ interface SavedMessage {
   content: string;
 }
 
-const Agent = ({
+const   Agent = ({
   userName,
   userId,
   interviewId,
@@ -147,12 +147,12 @@ const Agent = ({
 
   return (
     <>
-      <div className="call-view">
+      <div className="call-view ">
         {/* AI Interviewer Card */}
         <div className="card-interviewer">
           <div className="avatar">
             <Image
-              src="/ai-avatar.png"
+              src="/logo2.png"
               alt="profile-image"
               width={65}
               height={54}
@@ -167,10 +167,10 @@ const Agent = ({
         <div className="card-border">
           <div className="card-content">
             <Image
-              src="/user-avatar.png"
+              src="/userProfile.jpg"
               alt="profile-image"
-              width={539}
-              height={539}
+              width={600}
+              height={600}
               className="rounded-full object-cover size-[120px]"
             />
             <h3>{userName}</h3>
@@ -194,7 +194,7 @@ const Agent = ({
         </div>
       )}
 
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center mt-8">
         {callStatus !== "ACTIVE" ? (
           <button className="relative btn-call" onClick={() => handleCall()}>
             <span
