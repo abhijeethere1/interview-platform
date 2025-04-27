@@ -2,6 +2,8 @@
   "/(auth)/sign-in/page": "app/(auth)/sign-in/page.js",
   "/(auth)/sign-up/page": "app/(auth)/sign-up/page.js",
   "/(root)/allinterviews/page": "app/(root)/allinterviews/page.js",
+  "/(root)/interview/[id]/feedback/page": "app/(root)/interview/[id]/feedback/page.js",
+  "/(root)/interview/[id]/page": "app/(root)/interview/[id]/page.js",
   "/(root)/interview/page": "app/(root)/interview/page.js",
   "/(root)/page": "app/(root)/page.js",
   "/_not-found/page": "app/_not-found/page.js",

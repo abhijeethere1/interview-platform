@@ -9,6 +9,12 @@
     "[project]/app/(root)/allinterviews/page": [
       "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
     ],
+    "[project]/app/(root)/interview/[id]/feedback/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
+    "[project]/app/(root)/interview/[id]/page": [
+      "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
+    ],
     "[project]/app/(root)/interview/page": [
       "static/media/7cHmv4okm5zmbtYoK_4W4nIp-s.p.04edc821.woff2"
     ],

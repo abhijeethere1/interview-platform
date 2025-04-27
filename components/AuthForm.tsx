@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { z } from "zod";
 import Link from "next/link";
 // import Image from "next/image";
@@ -22,7 +23,7 @@ import FormField from "./FormField";
 
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
-// import { isAuthenticated } from "@/lib/actions/auth.action";
+import { FiEye, FiEyeOff } from "react-icons/fi"; // Import eye icons
 
 // Spinner Component for Loading
 const Spinner = () => {
@@ -41,6 +42,7 @@ const authFormSchema = (type: FormType) => {
 
 const AuthForm = ({ type }: { type: FormType }) => {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
   const formSchema = authFormSchema(type);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -115,11 +117,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
   const isSignIn = type === "sign-in";
 
+  const togglePassword = () => setShowPassword(!showPassword); // Function to toggle password visibility
+
   return (
     <div className="flex justify-center items-center min-h-screen p-4 ">
       <CardContainer className="inter-var">
         <CardBody className="bg-white dark:bg-black border border-black/[0.1] dark:border-white/[0.2] sm:w-[36rem] rounded-2xl p-10 shadow-2xl min-h-[600px] flex flex-col justify-center items-center space-y-6">
-
           {/* Header Section */}
           <div className="flex flex-col items-center space-y-3">
             <CardItem
@@ -160,14 +163,28 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 type="email"
               />
 
-              <FormField
-                control={form.control}
-                name="password"
-                label="Password"
-                placeholder="Enter your password"
-                type="password"
-               
-              />
+              {/* Password field with visibility toggle */}
+              <div className="relative">
+                <FormField
+                  control={form.control}
+                  name="password"
+                  label="Password"
+                  placeholder="Enter your password"
+                  type={showPassword ? "text" : "password"}
+                />
+                {/* Toggle visibility icon */}
+                <div
+                  className="absolute right-3 top-1/2 transform-translate-y-1/2 cursor-pointer"
+                  onClick={togglePassword}
+                  style={{ zIndex: 10 }}
+                >
+                  {showPassword ? (
+                    <FiEyeOff className="text-white dark:text-purple-400" size={20} />
+                  ) : (
+                    <FiEye className="text-white dark:text-purple-400" size={20} />
+                  )}
+                </div>
+              </div>
 
               <div className="flex flex-col items-center space-y-3">
                 {/* Submit Button */}

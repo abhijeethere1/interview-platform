@@ -30,7 +30,7 @@
         }
       },
       "layer": {
-        "app/(root)/interview/[id]/feedback/page": "rsc"
+        "app/(root)/interview/[id]/feedback/page": "action-browser"
       }
     },
     "00d5d013267b10086c3f61e76203aad2abc9e1bfaa": {
